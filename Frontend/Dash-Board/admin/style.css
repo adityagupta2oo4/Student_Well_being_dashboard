@@ -1,92 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  background: #f5f6fa;
   color: #333;
 }
 
+/* Header */
 header {
-  background: linear-gradient(135deg, #00dbde, #fc00ff);
-  color: white;
+  background: #fff;
   padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 0 12px rgba(0, 221, 255, 0.5);
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 header h1 {
   margin: 0;
   font-size: 1.5rem;
-}
-
-.dashboard {
-  padding: 25px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0, 221, 255, 0.5);
-  color: #333;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h2 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.value {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-canvas {
-  width: 100%;
-  height: 250px !important;
-}
-
-.apply-btn {
-  background: linear-gradient(135deg, #fc00ff, #00dbde);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 221, 255, 0.5);
   font-weight: 600;
 }
 
+.header-controls select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.apply-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.apply-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Metrics Section */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 30px;
+}
+
+.metrics .card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.metrics h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.metrics .value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* Charts Section */
+.dashboard {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr;
+  grid-auto-rows: minmax(250px, auto);
+  gap: 20px;
+  padding: 20px 30px;
+  grid-auto-rows: 320px;
+}
+
+/* Chart cards */
+.chart-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+/* Card Titles (Charts + Summary Boxes) */
+.metrics h2{      
+    font-size: 1.1rem;       
+    color: #6b6b6b;             
+}
+
+
+/* Optional: Center titles in certain sections */
+.chart-card h2 {
+    
+    text-align: center;
+    font-weight: 900 ;
+}
+
+.card small{
+    color: #6b6b6b;
+}
+
+
+
+
+
+.chart-card.large {
+  grid-column: span 1;
+}
+
+.chart-card.small {
+  grid-column: span 1;
+ 
+}
+
+/* Card Titles */
+.chart-card h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  max-height: 100%;
+}
+
+/* Footer */
 footer {
-  background: rgba(255,255,255,0.85);
+  background: #fff;
   text-align: center;
   padding: 15px;
   font-size: 0.9rem;
-  color: #333;
+  color: #555;
   margin-top: 30px;
-  box-shadow: 0 0 12px rgba(0, 221, 255, 0.3);
+  border-top: 1px solid #e0e0e0;
+  border-radius: 12px 12px 0 0;
 }
 
-/* Gradients for different cards */
-.gradient1 {
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-card.large {
+    grid-column: span 2;
+  }
+
+  .chart-card.small {
+    grid-column: span 2;
+  }
 }
 
-.gradient2 {
-  background: linear-gradient(135deg, #00dbde, #fc00ff);
-  color: white;
+@media (max-width: 500px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    grid-column: span 1;
+  }
 }
 
-.gradient3 {
-  background: linear-gradient(135deg, #fc00ff, #00dbde);
-  color: white;
+/* =======================
+   PREDICTIVE RISK & ALERTS
+   ======================= */
+.risk-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  margin: 2rem;
 }
 
+.risk-summary {
+  flex: 1;
+  min-width: 250px;
+  border-right: 1px solid #eee;
+  padding-right: 1.5rem;
+}
+
+.risk-summary h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.risk-score {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0077b6;
+  margin: 0.3rem 0;
+}
+
+.risk-summary small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.risk-details {
+  flex: 2.5;
+  min-width: 400px;
+}
+
+.risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.risk-header h3 {
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.risk-header p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.risk-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.risk-table th,
+.risk-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.category-high { color: #dc2626; font-weight: 600; }
+.category-medium { color: #eab308; font-weight: 600; }
+.category-low { color: #16a34a; font-weight: 600; }
+
+/* --------------------------
+   MOBILE OPTIMIZATION
+--------------------------- */
+@media (max-width: 768px) {
+  .risk-card {
+    flex-direction: column;
+    padding: 1.2rem;
+  }
+
+  .risk-summary {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+
+  .risk-details {
+    display: none; /* Hide full table on small screens */
+  }
+
+  /* Mini mobile list of top students */
+  .mobile-risk-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.4rem;
+  }
+
+  .mobile-risk-item {
+    font-size: 0.95rem;
+    color: #444;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 8px 14px;
+    width: 90%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+}
