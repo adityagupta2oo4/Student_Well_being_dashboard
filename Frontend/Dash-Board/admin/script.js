@@ -1,97 +1,211 @@
-// Get 2D contexts
-const gpaCtx = document.getElementById('gpaChart').getContext('2d');
-const sleepCtx = document.getElementById('sleepGpaChart').getContext('2d');
-const stressCtx = document.getElementById('stressSleepChart').getContext('2d');
-const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+// Placeholder function for demonstration, as this file is the dashboard, not the login page.
+function logout() {
+  window.location.href = '../../Login-Page/index.html';
+}
 
-// Gradient helper
+const gpaCtx = document.getElementById('gpaChart').getContext('2d');
+const sleepGpaCtx = document.getElementById('sleepGpaChart').getContext('2d');
+const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+const stressSleepCtx = document.getElementById('stressSleepChart').getContext('2d');
+
+// Gradient helper for filled line charts
 function createGradient(ctx, colorStart, colorEnd) {
-  const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+  const chartHeight = ctx.canvas.height || 300;
+  const gradient = ctx.createLinearGradient(0, 0, 0, chartHeight);
   gradient.addColorStop(0, colorStart);
   gradient.addColorStop(1, colorEnd);
   return gradient;
 }
 
-// Yearly GPA Line Chart
-const gpaChart = new Chart(gpaCtx, {
+// --- CGPA Conversion Utility ---
+const CGPA_MULTIPLIER = 2.5;
+const gpaToCgpa = (gpa) => parseFloat((gpa * CGPA_MULTIPLIER).toFixed(2));
+
+// -----------------------------
+//  1. Yearly CGPA Line Chart
+// -----------------------------
+const gpaData_4_point = [2.9, 3.0, 3.1, 3.05, 3.15];
+const cgpaData_10_point = gpaData_4_point.map(gpaToCgpa); // Convert to 10-point scale
+
+const cgpaChart = new Chart(gpaCtx, {
   type: 'line',
   data: {
-    labels: ['2020','2021','2022','2023','2024'],
+    labels: ['2020', '2021', '2022', '2023', '2024'],
     datasets: [{
-      label: 'Average GPA',
-      data: [2.9,3.0,3.1,3.05,3.15],
+      label: 'Average CGPA',
+      data: cgpaData_10_point,
       borderColor: '#007bff',
-      backgroundColor: createGradient(gpaCtx,'rgba(0,123,255,0.2)','rgba(0,123,255,0)'),
+      backgroundColor: createGradient(gpaCtx, 'rgba(0,123,255,0.3)', 'rgba(0,123,255,0)'),
       tension: 0.4,
       fill: true,
-      pointRadius: 5,
+      pointRadius: 6,
       pointBackgroundColor: '#007bff'
     }]
   },
   options: {
     responsive: true,
-    plugins: { legend:{ labels:{ color:'#333' } } },
-    scales: { y:{ min:2.5,max:4.0,ticks:{color:'#333'}}, x:{ticks:{color:'#333'}} }
+    maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#6c757d' } } },
+    scales: {
+      y: {
+        min: 6.0, // Adjusted Y-axis min for 10-point scale
+        max: 10.0, // Adjusted Y-axis max for 10-point scale
+        ticks: { color: '#6c757d', font: { size: 12 } },
+        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+      },
+      x: {
+        ticks: { color: '#6c757d', font: { size: 12 } },
+        grid: { display: false }
+      }
+    }
   }
 });
 
-// Sleep vs GPA Scatter
-const sleepGpaChart = new Chart(sleepCtx, {
-  type:'scatter',
-  data:{ datasets:[{
-    label:'Sleep vs GPA',
-    data:[{x:4,y:2.6},{x:5,y:2.9},{x:6,y:3.1},{x:7,y:3.4},{x:8,y:3.6}],
-    backgroundColor:'#007bff'
-  }]},
-  options:{ responsive:true, plugins:{ tooltip:{ callbacks:{ label:(ctx)=>`Sleep: ${ctx.raw.x}h, GPA: ${ctx.raw.y}` } }, legend:{ labels:{ color:'#333' } } },
-    scales:{ x:{ title:{ display:true,text:'Sleep (hrs)',color:'#333' }, min:3,max:9 }, y:{ title:{ display:true,text:'GPA',color:'#333' }, min:2.5,max:4.0 } } }
+// -----------------------------
+//  2. Sleep vs CGPA Scatter
+// -----------------------------
+const sleepGpaChart = new Chart(sleepGpaCtx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Sleep vs CGPA',
+      // Data points converted to 10-point scale (x: sleep, y: CGPA)
+      data: [
+        { x: 4, y: gpaToCgpa(2.6) },
+        { x: 5, y: gpaToCgpa(2.9) },
+        { x: 6, y: gpaToCgpa(3.1) },
+        { x: 7, y: gpaToCgpa(3.4) },
+        { x: 8, y: gpaToCgpa(3.6) }
+      ],
+      backgroundColor: '#2ecc71',
+      pointRadius: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `Sleep: ${ctx.raw.x}h, CGPA: ${ctx.raw.y.toFixed(2)}` // Update tooltip
+        }
+      },
+      legend: { labels: { color: '#6c757d' } }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Sleep (hrs)', color: '#6c757d' },
+        min: 3, max: 9,
+        ticks: { color: '#6c757d' },
+        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+      },
+      y: {
+        title: { display: true, text: 'CGPA', color: '#6c757d' }, // Update Y-axis title
+        min: 6.0, // Adjusted Y-axis min
+        max: 10.0, // Adjusted Y-axis max
+        ticks: { color: '#6c757d' },
+        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+      }
+    }
+  }
 });
 
-// Stress vs Sleep Bubble
-const stressSleepChart = new Chart(stressCtx,{
-  type:'bubble',
-  data:{ datasets:[{
-    label:'Stress vs Sleep',
-    data:[{x:6,y:40,r:12},{x:7,y:35,r:10},{x:8,y:30,r:8},{x:5,y:50,r:15}],
-    backgroundColor:'rgba(0,123,255,0.4)',
-    borderColor:'#007bff',
-    borderWidth:2
-  }]},
-  options:{ responsive:true, plugins:{ tooltip:{ callbacks:{ label:(ctx)=>`Sleep: ${ctx.raw.x}h, Stress: ${ctx.raw.y}%` } }, legend:{ labels:{ color:'#333' } } },
-    scales:{ x:{ title:{ display:true,text:'Sleep (hrs)',color:'#333' }, min:4,max:9 }, y:{ title:{ display:true,text:'Stress (%)',color:'#333' }, max:60 } } }
+// -----------------------------
+//  3. Attendance Trend Bar (No CGPA changes needed here)
+// -----------------------------
+const attendanceChart = new Chart(attendanceCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+      label: 'Attendance (%)',
+      data: [88, 85, 87, 90, 92, 91, 93, 89, 88, 90, 92, 94],
+      backgroundColor: '#f39c12',
+      borderRadius: 6,
+      barPercentage: 0.8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { mode: 'index', intersect: false }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { color: '#6c757d' },
+        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+      },
+      x: {
+        ticks: { color: '#6c757d' },
+        grid: { display: false }
+      }
+    }
+  }
 });
 
-// Attendance Trend Bar
-const attendanceChart = new Chart(attendanceCtx,{
-  type:'bar',
-  data:{ labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets:[{
-    label:'Attendance (%)',
-    data:[88,85,87,90,92,91,93,89,88,90,92,94],
-    backgroundColor:'#007bff',
-    borderRadius:6
-  }]},
-  options:{ responsive:true, plugins:{ legend:{ display:false }, tooltip:{ mode:'index', intersect:false } }, scales:{ y:{ beginAtZero:true, max:100, ticks:{color:'#333'}}, x:{ ticks:{color:'#333'} } } }
+// -----------------------------
+//  4. Stress vs Sleep Bubble Chart (No CGPA changes needed here)
+// -----------------------------
+const stressSleepChart = new Chart(stressSleepCtx, {
+  type: 'bubble',
+  data: {
+    datasets: [{
+      label: 'Stress vs Sleep',
+      data: [{ x: 6, y: 40, r: 12 }, { x: 7, y: 35, r: 10 }, { x: 8, y: 30, r: 8 }, { x: 5, y: 50, r: 15 }],
+      backgroundColor: 'rgba(231, 76, 60, 0.6)',
+      borderColor: 'rgb(231, 76, 60)',
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `Sleep: ${ctx.raw.x}h, Stress: ${ctx.raw.y}%`
+        }
+      },
+      legend: { labels: { color: '#6c757d' } }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Sleep (hrs)', color: '#6c757d' },
+        min: 4, max: 9,
+        ticks: { color: '#6c757d' }
+      },
+      y: {
+        title: { display: true, text: 'Stress (%)', color: '#6c757d' },
+        max: 60,
+        ticks: { color: '#6c757d' }
+      }
+    }
+  }
 });
 
-// Dynamic refresh
-function refreshData(){
-  document.getElementById('avgGPA').innerText=(3+Math.random()*0.3).toFixed(2);
-  document.getElementById('avgAttendance').innerText=`${(85+Math.random()*10).toFixed(1)}%`;
-  document.getElementById('avgStress').innerText=`${(40+Math.random()*10).toFixed(1)}%`;
-  document.getElementById('avgSleep').innerText=(6+Math.random()*1.5).toFixed(1);
+// Dynamic refresh logic for metrics
+function refreshData() {
+  // NEW: Generate random CGPA on the 10-point scale (e.g., 7.0 to 9.5)
+  document.getElementById('avgGPA').innerText = (7.0 + Math.random() * 2.5).toFixed(2);
+  document.getElementById('avgAttendance').innerText = `${(85 + Math.random() * 10).toFixed(1)}%`;
+  document.getElementById('avgStress').innerText = `${(40 + Math.random() * 10).toFixed(1)}%`;
+  document.getElementById('avgSleep').innerText = (6 + Math.random() * 1.5).toFixed(1);
   updateTimestamp();
 }
 
-function updateTimestamp(){
-  document.getElementById('lastUpdated').innerText=new Date().toLocaleString();
+function updateTimestamp() {
+  document.getElementById('lastUpdated').innerText = new Date().toLocaleString();
 }
 
 updateTimestamp();
 
 // -----------------------------
-//  PREDICTIVE RISK & ALERTS
+//  PREDICTIVE RISK & ALERTS Logic
 // -----------------------------
-
 const riskData = {
   2025: [
     { id: "25CS001", name: "Aarav K.", year: "1st Year", risk: 72, category: "High", action: "Refer to counselor" },
@@ -119,24 +233,25 @@ function renderRiskTable(year) {
   tableBody.innerHTML = data
     .map(
       (student) => `
-      <tr>
-        <td>${student.id} — ${student.name}</td>
-        <td>${student.year}</td>
-        <td>${student.risk}%</td>
-        <td class="category-${student.category.toLowerCase()}">${student.category}</td>
-        <td>${student.action}</td>
-      </tr>`
+              <tr>
+                <td>${student.id} — ${student.name}</td>
+                <td>${student.year}</td>
+                <td>${student.risk}%</td>
+                <td class="category-${student.category.toLowerCase()}">${student.category}</td>
+                <td>${student.action}</td>
+              </tr>`
     )
     .join("");
 
-  const avgRisk = Math.round(data.reduce((a, b) => a + b.risk, 0) / data.length);
+  // Calculate average risk for the displayed group
+  const totalRisk = data.reduce((a, b) => a + b.risk, 0);
+  const avgRisk = Math.round(totalRisk / data.length);
   document.getElementById("riskScore").textContent = `${avgRisk}%`;
 }
 
-// Connect it to the existing year selector
 document.getElementById("yearSelector").addEventListener("change", (e) => {
   renderRiskTable(e.target.value);
 });
 
-// Initialize for the default selected year
+// Initialize for the default selected year (2024)
 renderRiskTable(document.getElementById("yearSelector").value);
