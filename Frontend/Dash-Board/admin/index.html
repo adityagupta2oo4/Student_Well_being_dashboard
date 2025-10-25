@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindTrack Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>MindTrack Admin Dashboard</h1>
+    <div>
+      <select id="yearSelector">
+        <option>2023</option>
+        <option selected>2024</option>
+        <option>2025</option>
+      </select>
+      <button class="apply-btn" onclick="refreshData()">Refresh Data</button>
+    </div>
+  </header>
+
+  <section class="dashboard">
+    <div class="card gradient1">
+      <h2>Average GPA</h2>
+      <div class="value" id="avgGPA">3.05</div>
+      <small>Trend: <span id="gpaTrend">+0.02</span> vs last year</small>
+    </div>
+
+    <div class="card gradient2">
+      <h2>Average Attendance</h2>
+      <div class="value" id="avgAttendance">87%</div>
+      <small>On-time attendance across all courses</small>
+    </div>
+
+    <div class="card gradient3">
+      <h2>Average Stress Score</h2>
+      <div class="value" id="avgStress">42%</div>
+      <small>Self-reported & survey derived</small>
+    </div>
+
+    <div class="card gradient1">
+      <h2>Average Sleep (hrs)</h2>
+      <div class="value" id="avgSleep">6.3</div>
+      <small>Daily average (across all months)</small>
+    </div>
+
+    <div class="card gradient2">
+      <h2>Yearly GPA Trend</h2>
+      <canvas id="gpaChart"></canvas>
+    </div>
+
+    <div class="card gradient3">
+      <h2>Sleep vs GPA</h2>
+      <canvas id="sleepGpaChart"></canvas>
+    </div>
+
+    <div class="card gradient1">
+      <h2>Stress vs Sleep (Bubble)</h2>
+      <canvas id="stressSleepChart"></canvas>
+    </div>
+
+    <div class="card gradient2">
+      <h2>Attendance Trend (Monthly)</h2>
+      <canvas id="attendanceChart"></canvas>
+    </div>
+  </section>
+
+  <footer>
+    Data Source: LMS · Attendance DB · Surveys · Wearables <br>
+    Last Updated: <span id="lastUpdated"></span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
