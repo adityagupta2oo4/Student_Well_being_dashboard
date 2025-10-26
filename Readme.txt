@@ -67,7 +67,7 @@ Password: 1234
 ![Student Dashboard](./Frontend/Screen-shot/student.png)
 
 ### 🧑‍🏫 Admin Dashboard
-![Admin Dashboard](./Frontend/Screen-shot/Admin.png)
+![Admin Dashboard](https://github.com/adityagupta2oo4/Student_Well_being_dashboard/blob/main/Frontend/Screen-shot/Admin.png?raw=true)
 
 ### 🔐 Login Page
 ![Login Page](./Frontend/Screen-shot/login.png)
