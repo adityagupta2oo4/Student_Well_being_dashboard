@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (studentUsernameInput.value === studentCreds.username &&
             studentPasswordInput.value === studentCreds.password) {
             // Redirect to student dashboard HTML
-            window.location.href = '../Dash-Board/student/index.html';
+            window.location.href = '/Frontend/Dash-Board/student/index.html';
         } else {
             alert('Invalid student credentials!');
         }
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (adminUsernameInput.value === adminCreds.username &&
             adminPasswordInput.value === adminCreds.password) {
             // Optional: redirect admin
-            window.location.href = '../Dash-Board/admin/index.html';
+            window.location.href = '/Frontend/Dash-Board/admin/index.html';
         } else {
             alert('Invalid admin credentials!');
         }
