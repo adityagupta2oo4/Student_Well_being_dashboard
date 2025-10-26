@@ -64,13 +64,13 @@ Password: 1234
 ## 📸 Screenshots
 
 ### 🧍‍♀️ Student Dashboard
-![Student Dashboard](Frontend/Screen-shot/student.png)
+![Student Dashboard](./Frontend/Screen-shot/student.png)
 
 ### 🧑‍🏫 Admin Dashboard
-![Admin Dashboard](Frontend/Screen-shot/Admin.png)
+![Admin Dashboard](./Frontend/Screen-shot/Admin.png)
 
 ### 🔐 Login Page
-![Login Page](Frontend/Screen-shot/login.png)
+![Login Page](./Frontend/Screen-shot/login.png)
 
 
 ⚙️ Local Setup Guide
