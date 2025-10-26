@@ -1,82 +1,106 @@
-# 🧠 MindTrack Student Well-being Dashboard
+🧠 MindTrack Student Well-being Dashboard
 
-MindTrack is a dual-interface web application designed to help students monitor their academic performance (CGPA) and lifestyle factors (Sleep, Study Time, Stress, etc.). It calculates a composite **Risk Probability** and provides actionable alerts. The system features a Student Dashboard for personal data input and visualization, and an Admin Dashboard for holistic campus-wide risk monitoring.
+MindTrack is a dual-interface web application designed to help students monitor their academic performance (CGPA) and lifestyle factors such as Sleep, Study Time, Stress, and more.
+It calculates a composite 🎯 Risk Probability and provides actionable alerts to support well-being.
 
-## 🌟 Features
+The system includes:
+👩‍🎓 Student Dashboard for personal tracking & insights
+👨‍🏫 Admin Dashboard for campus-wide monitoring and analysis
 
-### Student Dashboard (Frontend)
-* **Daily Data Input:** Students can input their current CGPA, Sleep, Stress, Study Time, Social Time, and Exercise.
-* **Real-time Risk Calculation:** A composite risk score (0-100%) is calculated instantly based on input parameters and established thresholds.
-* **Metric Cards:** Displays current key metrics like CGPA, Avg Sleep, and Stress.
-* **Visualizations:** Features a **Lifestyle Radar Chart** to visualize the balance between different life factors.
-* **Theme Toggle:** Includes a modern **Dark Mode** toggle with a sleek SVG switch.
+🌟 Key Features
+🎓 Student Dashboard
 
-### Admin Dashboard (Monitoring)
-* **Aggregate Metrics:** Displays average CGPA, Attendance, Stress Score, and Sleep across the student body.
-* **Trend Analysis:** Uses Line Charts (Yearly CGPA Trend) and Bar Charts (Attendance Trend) to monitor overall student performance.
-* **Predictive Risk Table:** Lists flagged students based on their computed risk score, suggesting immediate actions (e.g., "Refer to counselor").
-* **Correlation Charts:** Includes charts like **Sleep vs CGPA** (Scatter plot) and **Stress vs Sleep** (Bubble chart) to identify campus-wide well-being patterns.
+📝 Daily Data Input: Enter CGPA, Sleep Hours, Stress Level, Study Time, Social Time, and Exercise duration.
 
-## 🚀 Deployed Site
+⚙️ Real-time Risk Calculation: Instantly computes a Risk Score (0–100%) using weighted thresholds.
 
-The application is deployed and accessible here:
+📊 Metric Cards: Show key stats — CGPA, Avg Sleep, Stress, etc.
 
-**[Placeholder: INSERT YOUR DEPLOYED SITE URL HERE]**
+🌈 Lifestyle Radar Chart: Visualizes lifestyle balance and habits.
 
-## 🔑 Access Credentials
+🌙 Dark Mode Toggle: Sleek SVG-based switch for a smooth UI theme change.
 
-To access the different portals for demonstration and testing:
+🧑‍💼 Admin Dashboard
 
-| Portal | Username (ID) | Password |
-| :--- | :--- | :--- |
-| **Student Portal** | `student1` | `123` |
-| **Admin Portal** | `admin1` | `1234` |
+📈 Aggregate Metrics: Displays campus-wide averages of CGPA, Attendance, Stress, and Sleep.
 
----
+🔍 Trend Analysis: Uses Line and Bar Charts to show academic and lifestyle trends.
 
-## 🛠️ Technical Stack
+🚨 Predictive Risk Table: Highlights at-risk students and suggests interventions (e.g., Refer to Counselor).
 
-* **Frontend:** HTML5, CSS3, JavaScript (ES6+)
-* **Styling:** Custom CSS with CSS Variables for seamless Dark Mode.
-* **Visualization:** **Chart.js** library for powerful data plotting (Radar, Line, Scatter, Bubble, Bar charts).
-* **Deployment:** (Specify your hosting platform, e.g., GitHub Pages, Netlify, Vercel)
+🔗 Correlation Charts: Explore patterns such as Sleep vs CGPA (Scatter) and Stress vs Sleep (Bubble).
 
----
+🌐 Live Deployment
 
-## 📸 Screenshots
+🚀 Access the application here:
+👉 MindTrack Dashboard (Vercel)
+https://student-well-being-dashboard-33k2.vercel.app/
 
-### Student Dashboard - Data Input & Risk View
-Shows the core personal monitoring interface with real-time risk feedback.
-![Student Dashboard - Light Mode with 8.0 CGPA Input](screenshots/Screenshot_2025-10-26_095035.jpg)
+🔑 Login Credentials (Demo)
 
-### Admin Dashboard - Overview
-Provides aggregate metrics and trend visualization for campus monitoring.
-![Admin Dashboard - Overview of CGPA, Sleep, and Stress Trends](screenshots/Screenshot_2025-10-26_095106.png)
+👩‍🎓 Student Access
 
-### MindTrack Login Portal
-The unified entry point for both student and admin access.
-![MindTrack Login Portal with Dark Mode Toggle](screenshots/Screenshot_2025-10-26_095043.jpg)
+Username: student1
 
----
+Password: 123
 
-## ⚙️ Local Setup Instructions
+👨‍🏫 Admin Access
 
-To run this project locally, follow these steps:
+Username: admin1
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [Placeholder: INSERT YOUR REPO URL HERE]
-    cd MindTrack-Dashboard
-    ```
+Password: 1234
 
-2.  **Open the Files:**
-    The project is purely frontend (HTML/CSS/JS). You can open the main files directly in your browser:
-    * **Login Page:** `[root]/Login-Page/index.html`
-    * **Student Dashboard:** `[root]/Frontend/Dash-Board/student/index.html` (Requires logging in first)
+🛠️ Technical Stack
 
-3.  **Start a Local Server (Recommended):**
-    For optimal loading and script execution, especially if you have a complex file structure, it's best to run a simple local web server:
-    * **Using VS Code:** Install the "Live Server" extension and right-click `Login-Page/index.html` to "Open with Live Server".
-    * **Using Python:** Run `python -m http.server` in the project root directory and navigate to `http://localhost:8000`.
+💻 Frontend: HTML5, CSS3, JavaScript (ES6+)
 
----
+🎨 Styling: Custom CSS with CSS Variables (Dark/Light Mode Support)
+
+📉 Visualization: Chart.js
+ for Radar, Line, Scatter, Bubble & Bar Charts
+
+☁️ Deployment: Vercel (or any preferred hosting platform)
+
+📸 Screenshots
+🧍‍♀️ Student Dashboard – Data Input & Risk View
+
+
+Real-time monitoring with instant risk feedback.
+
+🧑‍🏫 Admin Dashboard – Overview
+![Alt text](Frontend/Screen-shot/student.png)
+
+Displays key metrics, trends, and predictive alerts.
+
+🔐 MindTrack Login Portal
+
+Unified access for both students and administrators.
+
+⚙️ Local Setup Guide
+
+Follow these simple steps to run MindTrack locally:
+
+📦 Clone the repository:
+
+git clone [YOUR_REPO_URL_HERE]
+cd MindTrack-Dashboard
+
+
+🌐 Open the Files (Frontend-only):
+
+Login Page: /Login-Page/index.html
+
+Student Dashboard: /Frontend/Dash-Board/student/index.html (after login)
+
+🔥 Run a Local Server (Recommended):
+
+Using VS Code:
+→ Install Live Server extension
+→ Right-click Login-Page/index.html → “Open with Live Server”
+
+Using Python:
+
+python -m http.server
+
+
+→ Open http://localhost:8000
