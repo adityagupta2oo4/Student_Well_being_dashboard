@@ -61,17 +61,6 @@ Password: 1234
 
 ☁️ Deployment: Vercel (or any preferred hosting platform)
 
-## 📸 Screenshots
-
-### 🧍‍♀️ Student Dashboard
-![Student Dashboard](./Frontend/Screen-shot/student.png)
-
-### 🧑‍🏫 Admin Dashboard
-![Admin Dashboard](https://github.com/adityagupta2oo4/Student_Well_being_dashboard/blob/main/Frontend/Screen-shot/Admin.png?raw=true)
-
-### 🔐 Login Page
-![Login Page](./Frontend/Screen-shot/login.png)
-
 
 ⚙️ Local Setup Guide
 
