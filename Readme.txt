@@ -61,20 +61,17 @@ Password: 1234
 
 ☁️ Deployment: Vercel (or any preferred hosting platform)
 
-📸 Screenshots
-🧍‍♀️ Student Dashboard – Data Input & Risk View
+## 📸 Screenshots
 
+### 🧍‍♀️ Student Dashboard
+![Student Dashboard](Frontend/Screen-shot/student.png)
 
-Real-time monitoring with instant risk feedback.
+### 🧑‍🏫 Admin Dashboard
+![Admin Dashboard](Frontend/Screen-shot/Admin.png)
 
-🧑‍🏫 Admin Dashboard – Overview
-![Alt text](Frontend/Screen-shot/student.png)
+### 🔐 Login Page
+![Login Page](Frontend/Screen-shot/login.png)
 
-Displays key metrics, trends, and predictive alerts.
-
-🔐 MindTrack Login Portal
-
-Unified access for both students and administrators.
 
 ⚙️ Local Setup Guide
 
