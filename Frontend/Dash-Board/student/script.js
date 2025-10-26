@@ -1,6 +1,5 @@
 const DUMMY_CREDENTIALS = {
-    "24CS010": "pass123", 
-    "24CS022": "test456"
+    "student1": "123", 
 };
 
 let radarChart; // Variable to hold the Chart.js instance
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataInputForm = document.getElementById('dataInputForm');
     if (dataInputForm) {
         // Initial data now includes Social and Exercise
-        const initialData = { gpa: 3.0, sleep: 7.0, stress: 40, study: 4.5, social: 1.5, exercise: 0.5 };
+        const initialData = { gpa: 9.0, sleep: 7.0, stress: 40, study: 4.5, social: 1.5, exercise: 0.5 };
         updateDashboard(initialData);
         dataInputForm.addEventListener('submit', handleDataInput);
     }
@@ -47,7 +46,7 @@ function logout() {
 
 function calculateRisk(gpa, sleep, stress, study) {
     // Placeholder risk calculation logic - you can enhance this
-    const gpaRisk = (4.0 - gpa) * 5; 
+    const gpaRisk = (10.0 - gpa) * 5; 
     const sleepDeviation = Math.abs(sleep - 8);
     const sleepRisk = sleepDeviation * 3; 
     const stressRisk = stress * 0.4; 
